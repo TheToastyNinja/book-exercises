@@ -13,22 +13,27 @@ library(dplyr)
 nrow(flights)
 colnames(flights)
 ??flights
+View(flights)
 # Use `dplyr` to give the data frame a new column that is the amount of time
 # gained or lost while flying (that is: how much of the delay arriving occured
 # during flight, as opposed to before departing).
-mutate(
+flights <- mutate(
   flights,
-  time_diff = 
+  time_diff = arr_delay-dep_delay
 )
-
 # Use `dplyr` to sort your data frame in descending order by the column you just
 # created. Remember to save this as a variable (or in the same one!)
-
-
+arrange(flights, time_diff)
+View(flights)
 # For practice, repeat the last 2 steps in a single statement using the pipe
 # operator. You can clear your environmental variables to "reset" the data frame
+flights %>% 
+  mutate(
+    time_diff = arr_delay-dep_delay
+  ) %>% 
+  arrange(time_diff)
 
-
+View(flights)
 # Make a histogram of the amount of time gained using the `hist()` function
 
 
